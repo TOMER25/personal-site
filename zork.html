@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<!-- saved from url=(0020)https://iplayif.com/ -->
+<html data-theme="dark"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>Zork I: The Great Underground Empire</title>
+    <meta name="viewport" content="initial-scale=1,interactive-widget=resizes-content,minimum-scale=1,width=device-width">
+    <script src="./zork_files/jquery.min.js"></script>
+    <script src="./zork_files/ie.js" nomodule=""></script>
+    <script src="./zork_files/web.js" type="module"></script>
+    <link rel="stylesheet" href="./zork_files/web.css">
+    <style>
+      /* ============================================
+         80s Green Phosphor Terminal Theme for Zork
+         ============================================ */
+
+      @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+      :root {
+        --terminal-green: #33ff33;
+        --terminal-green-dim: #1a8c1a;
+        --terminal-green-bright: #66ff66;
+        --terminal-bg: #000000;
+        --terminal-statusbar: #0a1a0a;
+      }
+
+      html, body {
+        background: var(--terminal-bg) !important;
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 18px !important;
+        line-height: 1.4 !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        /* Subtle scanline effect */
+        background-image: repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 2px,
+          rgba(0, 0, 0, 0.08) 2px,
+          rgba(0, 0, 0, 0.08) 4px
+        ) !important;
+      }
+
+      /* Main game port */
+      #gameport {
+        background: var(--terminal-bg) !important;
+        color: var(--terminal-green) !important;
+        width: 100% !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+      }
+
+      #windowport {
+        background: var(--terminal-bg) !important;
+      }
+
+      /* All window frames */
+      .WindowFrame {
+        background: var(--terminal-bg) !important;
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 18px !important;
+        border: none !important;
+        box-shadow: none !important;
+      }
+
+      /* Status bar at the top */
+      .GridWindow, .WindowRock_3 {
+        background: var(--terminal-green) !important;
+        color: var(--terminal-bg) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 18px !important;
+      }
+
+      .GridWindow .Style_normal,
+      .GridWindow span,
+      .GridWindow .reverse {
+        background: var(--terminal-green) !important;
+        color: var(--terminal-bg) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+      }
+
+      /* All text */
+      span, div, p {
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+      }
+
+      .Style_normal, .BufferLine, .BufferWindowInner {
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 18px !important;
+      }
+
+      /* Text input */
+      textarea, input {
+        background: transparent !important;
+        color: var(--terminal-green-bright) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 18px !important;
+        border: none !important;
+        outline: none !important;
+        caret-color: var(--terminal-green-bright) !important;
+      }
+
+      /* The > prompt */
+      .LineInput {
+        color: var(--terminal-green-bright) !important;
+      }
+
+      /* Loading pane */
+      #loadingpane {
+        background: var(--terminal-bg) !important;
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        height: 100vh !important;
+      }
+
+      #loadingpane h1 {
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+        font-size: 32px !important;
+      }
+
+      progress {
+        accent-color: var(--terminal-green) !important;
+      }
+
+      /* Error pane */
+      #errorpane, #errorcontent {
+        background: var(--terminal-bg) !important;
+        color: var(--terminal-green) !important;
+        font-family: 'VT323', 'Courier New', monospace !important;
+      }
+
+      /* Subtle green glow on text for atmosphere */
+      .BufferWindow {
+        text-shadow: 0 0 4px rgba(51, 255, 51, 0.4) !important;
+      }
+
+      /* Scrollbar */
+      ::-webkit-scrollbar { width: 6px; }
+      ::-webkit-scrollbar-track { background: #000; }
+      ::-webkit-scrollbar-thumb { background: var(--terminal-green-dim); }
+      ::-webkit-scrollbar-thumb:hover { background: var(--terminal-green); }
+    </style>
+</head>
+<body>
+    <div id="gameport">
+        
+        <div id="windowport"><div class="WindowFrame BufferWindow WindowRock_1" id="window2" aria-live="polite" role="log" tabindex="-1" style="height: 748px; left: 0px; top: 30px; width: 900px;" aria-busy="false"><style>#window2 .Style_subheader {font-style: normal; font-weight: bold}
+#window2 .Style_preformatted {font-style: normal; font-weight: normal}
+#window2 .Style_note {font-style: italic; font-weight: bold}
+#window2 .Style_emphasized {font-style: italic; font-weight: normal}
+#window2 .Style_alert {font-style: italic; font-weight: bold}
+#window2 .Style_user1 {font-style: normal; font-weight: bold}
+#window2 .Style_user2 {font-style: italic; font-weight: normal}</style><div class="BufferWindowInner"><div class="BufferLine Style_normal_par"><span class="Style_normal">ZORK I: The Great Underground Empire</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">Copyright (c) 1981, 1982, 1983 Infocom, Inc. All rights reserved.</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">ZORK is a registered trademark of Infocom, Inc.</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">Revision 88 / Serial number 840726</span></div><div class="BufferLine BlankPara"><span class="BlankLineSpace">&nbsp;</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">West of House</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">You are standing in an open field west of a white house, with a boarded front door.</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">There is a small mailbox here.</span></div><div class="BufferLine BlankPara"><span class="BlankLineSpace">&nbsp;</span></div><div class="BufferLine Style_normal_par"><span class="Style_normal">&gt;</span><textarea aria-hidden="false" autocapitalize="off" class="Input LineInput" rows="1" style="left: -10000px;" maxlength="99"></textarea></div></div></div><div class="WindowFrame GridWindow WindowRock_3 reverse" id="window3" aria-atomic="true" aria-live="off" role="status" style="height: 30px; left: 0px; top: 0px; width: 900px;" aria-busy="false"><style>#window3 .Style_emphasized {font-style: italic; font-weight: normal}
+#window3 .Style_preformatted {font-weight: normal; font-style: normal}
+#window3 .Style_subheader {font-style: normal; font-weight: bold}
+#window3 .Style_alert {font-style: italic; font-weight: bold}
+#window3 .Style_user1 {font-weight: bold; font-style: normal}
+#window3 .Style_note {font-weight: bold; font-style: italic}
+#window3 .Style_user2 {font-style: italic; font-weight: normal}</style><textarea aria-hidden="true" autocapitalize="off" class="Input" rows="1" disabled=""></textarea><div class="GridLine" id="win3_ln0"><span class="Style_normal reverse"> West of House                                                                       Score: 0  Moves: 0 </span></div></div><div class="WindowFrame GridWindow WindowRock_2 hidden" id="window5" aria-atomic="true" aria-live="off" role="status" style="height: 0px; left: 0px; top: 30px; width: 900px;"><style>#window5 .Style_emphasized {font-style: italic; font-weight: normal}
+#window5 .Style_preformatted {font-weight: normal; font-style: normal}
+#window5 .Style_subheader {font-style: normal; font-weight: bold}
+#window5 .Style_alert {font-style: italic; font-weight: bold}
+#window5 .Style_user1 {font-weight: bold; font-style: normal}
+#window5 .Style_note {font-weight: bold; font-style: italic}
+#window5 .Style_user2 {font-style: italic; font-weight: normal}</style><textarea aria-hidden="true" autocapitalize="off" class="Input" rows="1" disabled=""></textarea></div></div>
+        
+        <div id="errorpane" style="display:none;"><div id="errorcontent">...</div></div>
+    <div id="loadingpane" class="asyncglk_ui" style="display: none;"><h1>zork1.z5</h1> <p><img src="./zork_files/waiting.gif" alt="Cover art"></p> <p><progress class="svelte-i6dww7"></progress></p></div></div>
+
+<dialog class="asyncglk_ui asyncglk_file_dialog selecting svelte-1j9ahxx fullscreen manually_positioned"><div class="inner svelte-1j9ahxx"><div class="head svelte-1j9ahxx"><div id="title" class="svelte-1j9ahxx">&nbsp;</div> <button class="close svelte-1j9ahxx" aria-label="Close">✖</button></div> <div><div id="actions" class="svelte-1wjxkp6"><button>Add file</button> <button>New Folder</button></div> <div id="dirtree" class="svelte-909yjd"> <span><button class="flat svelte-909yjd" data-path="/usr">My files</button></span><span class="slash svelte-909yjd">&nbsp;/&nbsp;</span> <span>zork1</span></div></div> <div id="filelist" role="listbox" class="svelte-1wjxkp6"></div>  <div class="foot uirow"><div id="filter" class="svelte-1wjxkp6"></div> <div><button class="close">Cancel</button> <button class="submit"></button></div></div>  <input id="add_file" type="file" multiple="" class="svelte-1wjxkp6"></div></dialog><scribe-shadow id="crxjs-ext" data-crx="okfkdaglfjjjfefdcppliegebpoegaii" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; z-index: 2147483647; overflow: visible; visibility: visible;"><template shadowrootmode="open"><div id="root-scribe-elem" style="position: fixed; width: 0px; height: 0px; top: 0px; left: 0px; overflow: visible; color: rgb(21, 24, 30);"><div role="region" aria-label="Notifications (F8)" tabindex="-1" style="pointer-events: none;"><ol tabindex="-1" class="fixed bottom-auto right-0 top-0 z-[999999] flex max-h-screen w-[400px] max-w-full p-4"></ol></div></div><link rel="stylesheet" href="chrome-extension://okfkdaglfjjjfefdcppliegebpoegaii/assets/style.css"></template></scribe-shadow></body></html>
