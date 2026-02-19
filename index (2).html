@@ -1,0 +1,941 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Will Tomer -- Personal Homepage</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+    :root {
+      --bg: #c0c0c0;
+      --window-bg: #ffffff;
+      --window-border-dark: #808080;
+      --window-border-darker: #404040;
+      --window-border-light: #ffffff;
+      --titlebar-active: #000080;
+      --titlebar-text: #ffffff;
+      --text: #000000;
+      --link: #0000cc;
+      --link-visited: #800080;
+      --link-hover: #cc0000;
+      --hr-color: #808080;
+      --inset-bg: #ffffff;
+      --highlight: #000080;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23b8b8b8'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%23b8b8b8'/%3E%3C/svg%3E");
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .window {
+      background: var(--window-bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      width: 100%;
+      max-width: 720px;
+      margin-bottom: 16px;
+    }
+
+    .window-titlebar {
+      background: var(--titlebar-active);
+      color: var(--titlebar-text);
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .window-titlebar .title-text { display: flex; align-items: center; gap: 8px; }
+
+    .title-icon {
+      width: 16px; height: 16px;
+      background: #c0c0c0;
+      border: 1px solid #808080;
+      display: inline-block;
+      font-size: 11px; line-height: 16px; text-align: center;
+      color: #000;
+      font-family: 'Courier Prime', monospace;
+      font-weight: bold;
+    }
+
+    .window-buttons { display: flex; gap: 3px; }
+
+    .win-btn {
+      width: 16px; height: 14px;
+      background: var(--bg);
+      border-top: 1px solid var(--window-border-light);
+      border-left: 1px solid var(--window-border-light);
+      border-right: 1px solid var(--window-border-darker);
+      border-bottom: 1px solid var(--window-border-darker);
+      font-size: 9px; line-height: 14px; text-align: center;
+      color: #000; cursor: default;
+      font-family: 'Courier Prime', monospace;
+    }
+
+    .window-content { padding: 16px 18px; }
+
+    .inset {
+      border-top: 1px solid var(--window-border-dark);
+      border-left: 1px solid var(--window-border-dark);
+      border-right: 1px solid var(--window-border-light);
+      border-bottom: 1px solid var(--window-border-light);
+      padding: 10px 12px;
+      background: var(--inset-bg);
+      margin-bottom: 14px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid var(--hr-color);
+      border-bottom: 1px solid var(--window-border-light);
+      margin: 14px 0;
+    }
+
+    h1, h2, h3 { font-family: 'VT323', monospace; font-weight: normal; letter-spacing: 1px; }
+    h1 { font-size: 42px; line-height: 1; color: var(--highlight); }
+    h2 { font-size: 24px; color: var(--highlight); margin-bottom: 8px; }
+    h3 { font-size: 20px; margin-bottom: 4px; color: #333; }
+
+    p { margin-bottom: 10px; line-height: 1.6; }
+    p:last-child { margin-bottom: 0; }
+
+    a { color: var(--link); text-decoration: underline; }
+    a:visited { color: var(--link-visited); }
+    a:hover { color: var(--link-hover); }
+
+    .statusbar {
+      border-top: 1px solid var(--window-border-dark);
+      background: var(--bg);
+      padding: 3px 8px;
+      font-size: 12px; color: #444;
+      display: flex; gap: 12px;
+    }
+
+    .statusbar-panel {
+      border-top: 1px solid var(--window-border-dark);
+      border-left: 1px solid var(--window-border-dark);
+      border-right: 1px solid var(--window-border-light);
+      border-bottom: 1px solid var(--window-border-light);
+      padding: 1px 6px;
+    }
+
+    .header-content { display: flex; gap: 18px; align-items: flex-start; }
+
+    .avatar-box {
+      width: 80px; height: 80px; flex-shrink: 0;
+      border-top: 2px solid var(--window-border-dark);
+      border-left: 2px solid var(--window-border-dark);
+      border-right: 2px solid var(--window-border-light);
+      border-bottom: 2px solid var(--window-border-light);
+      background: var(--highlight);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'VT323', monospace; font-size: 48px; color: #fff;
+    }
+
+    .header-text h1 { margin-bottom: 2px; }
+    .header-text .subtitle { font-family: 'VT323', monospace; font-size: 18px; color: #555; }
+
+    .marquee-bar {
+      background: var(--highlight); color: #fff;
+      font-family: 'VT323', monospace; font-size: 17px;
+      padding: 3px 0; overflow: hidden; white-space: nowrap;
+      margin-bottom: 16px;
+    }
+
+    .marquee-inner { display: inline-block; animation: marquee 28s linear infinite; }
+
+    @keyframes marquee {
+      from { transform: translateX(100vw); }
+      to   { transform: translateX(-100%); }
+    }
+
+    .tabs { display: flex; margin-bottom: -1px; padding: 0 8px; }
+
+    .tab {
+      font-family: 'VT323', monospace; font-size: 17px;
+      padding: 4px 14px 3px;
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: none;
+      background: var(--bg); cursor: pointer; color: #333; user-select: none;
+    }
+
+    .tab.active { background: #fff; color: #000; z-index: 2; position: relative; border-bottom: 2px solid #fff; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .cursor {
+      display: inline-block; width: 9px; height: 16px;
+      background: var(--highlight);
+      animation: blink 1s step-end infinite;
+      vertical-align: middle; margin-left: 2px;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0; }
+    }
+
+    .counter {
+      font-family: 'VT323', monospace; font-size: 22px;
+      background: #000; color: #00ff00;
+      padding: 2px 8px; letter-spacing: 3px;
+      display: inline-block; border: 1px solid #00aa00;
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th { text-align: left; background: var(--highlight); color: #fff; font-family: 'VT323', monospace; font-size: 16px; padding: 3px 8px; }
+    td { padding: 4px 8px; border-bottom: 1px dotted #ccc; }
+    tr:nth-child(even) td { background: #f0f0f0; }
+
+    .btn {
+      font-family: 'VT323', monospace; font-size: 17px;
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      padding: 3px 14px; cursor: pointer; color: #000; display: inline-block;
+    }
+
+    .btn:active {
+      border-top: 2px solid var(--window-border-darker);
+      border-left: 2px solid var(--window-border-darker);
+      border-right: 2px solid var(--window-border-light);
+      border-bottom: 2px solid var(--window-border-light);
+    }
+
+    .badge { font-family: 'VT323', monospace; font-size: 13px; background: var(--highlight); color: #fff; padding: 1px 5px; display: inline-block; }
+
+    .construction { font-family: 'VT323', monospace; font-size: 16px; color: #cc6600; display: flex; align-items: center; gap: 6px; }
+    .construction-icon { font-size: 20px; animation: spin 2s linear infinite; display: inline-block; }
+
+    @keyframes spin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .form-row { display: flex; flex-direction: column; gap: 8px; margin-bottom: 10px; }
+    label { font-family: 'VT323', monospace; font-size: 17px; }
+
+    input[type="text"], textarea {
+      font-family: 'Courier Prime', monospace; font-size: 13px;
+      border-top: 1px solid var(--window-border-dark);
+      border-left: 1px solid var(--window-border-dark);
+      border-right: 1px solid var(--window-border-light);
+      border-bottom: 1px solid var(--window-border-light);
+      padding: 3px 6px; background: #fff; width: 100%;
+    }
+
+    textarea { height: 70px; resize: vertical; }
+
+    .site-footer { text-align: center; color: #555; padding: 8px; font-family: 'VT323', monospace; font-size: 16px; }
+
+    /* Minesweeper */
+    .mine-window {
+      margin-top: 14px;
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+    }
+
+    .mine-toolbar {
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      margin: 6px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .mine-counter {
+      font-family: 'VT323', monospace;
+      font-size: 28px;
+      background: #000;
+      color: #ff0000;
+      padding: 2px 6px;
+      letter-spacing: 3px;
+      min-width: 52px;
+      text-align: center;
+      border-top: 1px solid #555;
+      border-left: 1px solid #555;
+      border-right: 1px solid #fff;
+      border-bottom: 1px solid #fff;
+    }
+
+    .mine-face-btn {
+      font-size: 20px;
+      width: 34px; height: 34px;
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      user-select: none;
+    }
+
+    .mine-face-btn:active {
+      border-top: 2px solid var(--window-border-darker);
+      border-left: 2px solid var(--window-border-darker);
+      border-right: 2px solid var(--window-border-light);
+      border-bottom: 2px solid var(--window-border-light);
+    }
+
+    .mine-board {
+      margin: 0 6px 6px;
+      border-top: 2px solid var(--window-border-dark);
+      border-left: 2px solid var(--window-border-dark);
+      border-right: 2px solid var(--window-border-light);
+      border-bottom: 2px solid var(--window-border-light);
+      display: inline-block;
+      line-height: 0;
+    }
+
+    .mine-board-inner {
+      display: grid;
+    }
+
+    .mine-cell {
+      width: 22px; height: 22px;
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      cursor: pointer;
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+      font-weight: bold;
+      display: flex; align-items: center; justify-content: center;
+      user-select: none;
+      box-sizing: border-box;
+    }
+
+    .mine-cell.revealed {
+      border: 1px solid #aaa;
+      background: var(--bg);
+      cursor: default;
+    }
+
+    .mine-cell.flagged { cursor: pointer; }
+
+    .mine-cell[data-n="1"] { color: #0000ff; }
+    .mine-cell[data-n="2"] { color: #007b00; }
+    .mine-cell[data-n="3"] { color: #ff0000; }
+    .mine-cell[data-n="4"] { color: #00007b; }
+    .mine-cell[data-n="5"] { color: #7b0000; }
+    .mine-cell[data-n="6"] { color: #007b7b; }
+    .mine-cell[data-n="7"] { color: #000000; }
+    .mine-cell[data-n="8"] { color: #7b7b7b; }
+
+    @media (max-width: 500px) {
+      .header-content { flex-direction: column; }
+      .tabs { flex-wrap: wrap; }
+    }
+  </style>
+</head>
+<body>
+
+
+
+  <div class="window">
+    <div class="window-titlebar">
+      <div class="title-text">
+        <span class="title-icon">W</span>
+        Will Tomer &mdash; Personal Homepage
+      </div>
+      <div class="window-buttons">
+        <div class="win-btn">_</div>
+        <div class="win-btn">&#9633;</div>
+        <div class="win-btn" onclick="triggerCrash()">&#x2715;</div>
+      </div>
+    </div>
+
+    <div class="window-content">
+
+      <div class="header-content">
+        <div class="avatar-box">WT</div>
+        <div class="header-text">
+          <h1>WILL TOMER<span class="cursor"></span></h1>
+          <div class="subtitle">Academic &middot; Writer &middot; Journalist</div>
+          <br>
+          <div style="font-size:13px; color:#444;">
+            Master's Candidate &nbsp;|&nbsp; former <em>Pittsburgh Post-Gazette</em> &nbsp;|&nbsp; former <em>Toledo Blade</em>
+          </div>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="tabs">
+        <div class="tab active" data-tab="about"      onclick="showTab('about')">About</div>
+        <div class="tab"        data-tab="journalism" onclick="showTab('journalism')">Journalism</div>
+        <div class="tab"        data-tab="research"   onclick="showTab('research')">Research</div>
+        <div class="tab"        data-tab="contact"    onclick="showTab('contact')">Contact</div>
+      </div>
+
+      <!-- Tab: About -->
+      <div class="inset tab-content active" id="tab-about">
+        <h2>// ABOUT ME</h2>
+        <p>Hello and welcome to my website. I'm <strong>Will Tomer</strong>, a graduate student at Idaho State University, currently pursuing my Master's degree in History. Before returning to academia, I spent several years working in print journalism &mdash; I wrote and edited opinion pieces on local politicals, global affairs, and more for papers in the Rust Belt.</p>
+        <p>My academic research interests include social and sensory histories of the Third Reich, as well as German post-war reconstruction. I also study media, politics, technology film, sports, and the craft of writing itself.</p>
+        <p>This page is my little corner of the internet. Feel free to poke around.</p>
+        <hr>
+        <h3>Quick Facts</h3>
+        <table>
+          <tr><td><strong>Status</strong></td><td>Master's Student</td></tr>
+          <tr><td><strong>Background</strong></td><td>Print Journalism</td></tr>
+          <tr><td><strong>Former Employers</strong></td><td>Pittsburgh Post-Gazette, Toledo Blade</td></tr>
+          <tr><td><strong>Location</strong></td><td>Idaho, USA</td></tr>
+        </table>
+        <hr>
+        <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
+          <div>Visitors: <span class="counter" id="counter">004721</span></div>
+          <div class="construction">
+            <span class="construction-icon">&#9881;</span>
+            Site under construction &mdash; check back often!
+          </div>
+        </div>
+      </div>
+
+      <!-- Tab: Journalism -->
+      <div class="inset tab-content" id="tab-journalism">
+        <h2>// JOURNALISM</h2>
+        <p>Before graduate school, I reported and wrote for two of the Ohio Valley region's most storied newspapers. A selection of published work is below.</p>
+        <hr>
+        <h3>Pittsburgh Post-Gazette</h3>
+        <p style="color:#555; font-size:13px;">Pittsburgh, Pennsylvania</p>
+        <table>
+          <thead><tr><th>Title</th><th>Date</th><th>Section</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><a href="https://www.post-gazette.com/opinion/columnists/2018/10/30/will-tomer-the-limits-of-civil-discourse/stories/201810300038" target="_blank">The limits of civil discourse</a></td>
+              <td>Oct 2018</td><td><span class="badge">Opinion</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://www.post-gazette.com/opinion/columnists/2018/11/20/will-tomer-the-case-for-antitrust-action-against-facebook/stories/201811200028" target="_blank">The case for antitrust action against Facebook</a></td>
+              <td>Nov 2018</td><td><span class="badge">Opinion</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://www.post-gazette.com/ae/books/2019/04/22/american-cosmic-ufos-religion-technology-diana-walsh-dw-pasulka-alien-extraterrestrial-life/stories/201903310008" target="_blank">'American Cosmic' details extraterrestrial fascination among the rich and powerful</a></td>
+              <td>Apr 2019</td><td><span class="badge">Books</span></td>
+            </tr>
+          </tbody>
+        </table>
+        <hr>
+        <h3>Toledo Blade</h3>
+        <p style="color:#555; font-size:13px;">Toledo, Ohio</p>
+        <table>
+          <thead><tr><th>Title</th><th>Date</th><th>Section</th></tr></thead>
+          <tbody>
+            <tr>
+              <td><a href="https://www.toledoblade.com/Will-Tomer/2018/07/08/History-will-not-judge-this-kindly-Pursuing-justice-for-Abu-Zubaydah-the-first-victim-of-the-CIA-s-torture-program/stories/20180708049" target="_blank">Pursuing justice for Abu Zubaydah, the first victim of the CIA's torture program</a></td>
+              <td>Jul 2018</td><td><span class="badge">Features</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://www.toledoblade.com/Will-Tomer/2018/04/01/The-importance-of-baseball/stories/20180401057" target="_blank">The importance of baseball</a></td>
+              <td>Apr 2018</td><td><span class="badge">Opinion</span></td>
+            </tr>
+            <tr>
+              <td><a href="https://www.toledoblade.com/opinion/letters-to-the-editor/2025/03/14/to-editor-arrest-khalil-presents-existential-threat-nation/stories/20250313041" target="_blank">Arrest of Mahmoud Khalil presents an existential threat to nation</a></td>
+              <td>Mar 2025</td><td><span class="badge">Opinion</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Tab: Research -->
+      <div class="inset tab-content" id="tab-research">
+        <h2>// RESEARCH &amp; ACADEMICS</h2>
+        <p>I'm currently enrolled in a Master's program for History at Idaho State University, exploring topics relating to the lives of Germans before, during, and after the Third Reich. I am also interested in technology and privacy-related issues.</p>
+        <hr>
+        <table>
+          <thead><tr><th>Area of Interest</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>History of the Third Reich</td><td>Social/sensory history, POWs in U.S.</td></tr>
+            <tr><td>Post-War Germany</td><td>Reconstruction, public health crisis</td></tr>
+            <tr><td>Tech &amp; Privacy</td><td>Surveillance capitalism, data privacy</td></tr>
+            <tr><td>Writing &amp; Rhetoric</td><td>Readable history, media criticism</td></tr>
+          </tbody>
+        </table>
+        <hr>
+        <div class="construction">
+          <span class="construction-icon">&#9881;</span>
+          Publications coming soon &mdash; check back later!
+        </div>
+      </div>
+
+      <!-- Tab: Contact -->
+      <div class="inset tab-content" id="tab-contact">
+        <h2>// CONTACT</h2>
+        <p>Have a question, want to connect, or just saying hi? Use the form below or reach out directly.</p>
+        <hr>
+        <form name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/">
+          <input type="hidden" name="form-name" value="contact">
+          <p style="display:none;"><label>Don't fill this out: <input name="bot-field"></label></p>
+          <div class="form-row">
+            <label for="contact-name">Your Name:</label>
+            <input type="text" id="contact-name" name="name" placeholder="John Smith" required>
+          </div>
+          <div class="form-row">
+            <label for="contact-email">Your E-Mail:</label>
+            <input type="email" id="contact-email" name="email" placeholder="jsmith@aol.com" required>
+          </div>
+          <div class="form-row">
+            <label for="contact-message">Message:</label>
+            <textarea id="contact-message" name="message" placeholder="Type your message here..." required></textarea>
+          </div>
+          <button type="submit" class="btn">[ Send Message ]</button>
+          &nbsp;
+          <button type="reset" class="btn">[ Clear ]</button>
+        </form>
+        <hr>
+        <p style="font-size:13px; color:#555;">
+          Links: <a href="https://www.linkedin.com/in/willtomer">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="#">Academia.edu</a>
+        </p>
+      </div>
+
+    </div><!-- /window-content -->
+
+    <div class="statusbar">
+      <div class="statusbar-panel">willtomer.com</div>
+      <div class="statusbar-panel" id="status-msg">Document done.</div>
+    </div>
+  </div><!-- /window -->
+
+  <div class="site-footer">
+    &copy; 1999&ndash;2026 Will Tomer &nbsp;&middot;&nbsp; Made with &#9829; and Notepad.exe &nbsp;&middot;&nbsp;
+    <span style="color:#000080;">Best viewed in 800&times;600</span>
+  </div>
+
+  <script>
+    function showTab(name) {
+      var tabs = document.querySelectorAll('.tab');
+      var panels = document.querySelectorAll('.tab-content');
+      for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
+      for (var j = 0; j < panels.length; j++) { panels[j].classList.remove('active'); }
+
+      var btn = document.querySelector('.tab[data-tab="' + name + '"]');
+      var panel = document.getElementById('tab-' + name);
+      if (btn) { btn.classList.add('active'); }
+      if (panel) { panel.classList.add('active'); }
+
+      var labels = { about: 'About Will', journalism: 'Journalism Portfolio', research: 'Research & Academics', contact: 'Contact Page' };
+      var bar = document.getElementById('status-msg');
+      if (bar) { bar.textContent = labels[name] + ' - loaded.'; }
+    }
+
+    // --- Minesweeper ---
+    var COLS = 9, ROWS = 9, MINES = 10;
+    var mineBoard = [], mineRevealed = [], mineFlagged = [];
+    var mineGameOver = false, mineStarted = false, mineTimer = 0, mineInterval = null;
+
+    function minePad(n) { return String(Math.min(999, Math.max(0, n))).padStart(3, '0'); }
+
+    function mineInit() {
+      clearInterval(mineInterval);
+      mineGameOver = false; mineStarted = false; mineTimer = 0;
+      mineBoard = []; mineRevealed = []; mineFlagged = [];
+      for (var i = 0; i < ROWS * COLS; i++) { mineBoard.push(0); mineRevealed.push(false); mineFlagged.push(false); }
+      // Place mines
+      var placed = 0;
+      while (placed < MINES) {
+        var idx = Math.floor(Math.random() * ROWS * COLS);
+        if (mineBoard[idx] !== -1) { mineBoard[idx] = -1; placed++; }
+      }
+      // Compute numbers
+      for (var r = 0; r < ROWS; r++) {
+        for (var c = 0; c < COLS; c++) {
+          if (mineBoard[r * COLS + c] === -1) continue;
+          var count2 = 0;
+          for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+            var nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && mineBoard[nr * COLS + nc] === -1) count2++;
+          }
+          mineBoard[r * COLS + c] = count2;
+        }
+      }
+      document.getElementById('mine-face').textContent = '\u{1F642}';
+      document.getElementById('mine-time').textContent = '000';
+      document.getElementById('mine-flag-count').textContent = minePad(MINES);
+      mineRender();
+    }
+
+    function mineRender() {
+      var bd = document.getElementById('mine-board');
+      bd.style.gridTemplateColumns = 'repeat(' + COLS + ', 22px)';
+      bd.innerHTML = '';
+      for (var i = 0; i < ROWS * COLS; i++) {
+        (function(idx) {
+          var cell = document.createElement('div');
+          cell.className = 'mine-cell';
+          if (mineRevealed[idx]) {
+            cell.classList.add('revealed');
+            var v = mineBoard[idx];
+            if (v === -1) { cell.textContent = '\uD83D\uDCA3'; }
+            else if (v > 0) { cell.textContent = v; cell.setAttribute('data-n', v); }
+          } else if (mineFlagged[idx]) {
+            cell.textContent = '\uD83D\uDEA9';
+          }
+          cell.addEventListener('click', function() { mineReveal(idx); });
+          cell.addEventListener('contextmenu', function(e) { e.preventDefault(); mineFlag(idx); });
+          bd.appendChild(cell);
+        })(i);
+      }
+    }
+
+    function mineReveal(idx) {
+      if (mineGameOver || mineRevealed[idx] || mineFlagged[idx]) return;
+      if (!mineStarted) {
+        mineStarted = true;
+        mineInterval = setInterval(function() {
+          mineTimer++;
+          document.getElementById('mine-time').textContent = minePad(mineTimer);
+          if (mineTimer >= 999) clearInterval(mineInterval);
+        }, 1000);
+      }
+      mineRevealed[idx] = true;
+      if (mineBoard[idx] === -1) {
+        mineGameOver = true;
+        clearInterval(mineInterval);
+        document.getElementById('mine-face').textContent = '\uD83D\uDE35';
+        // Reveal all mines
+        for (var i = 0; i < ROWS * COLS; i++) { if (mineBoard[i] === -1) mineRevealed[i] = true; }
+        mineRender(); return;
+      }
+      if (mineBoard[idx] === 0) {
+        var r = Math.floor(idx / COLS), c = idx % COLS;
+        for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+          var nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
+            var ni = nr * COLS + nc;
+            if (!mineRevealed[ni] && !mineFlagged[ni]) mineReveal(ni);
+          }
+        }
+      }
+      mineCheckWin();
+      mineRender();
+    }
+
+    function mineFlag(idx) {
+      if (mineGameOver || mineRevealed[idx]) return;
+      mineFlagged[idx] = !mineFlagged[idx];
+      var flagged = mineFlagged.filter(Boolean).length;
+      document.getElementById('mine-flag-count').textContent = minePad(MINES - flagged);
+      mineRender();
+    }
+
+    function mineCheckWin() {
+      var unrevealed = mineRevealed.filter(function(v, i) { return !v && mineBoard[i] !== -1; }).length;
+      if (unrevealed === 0) {
+        mineGameOver = true;
+        clearInterval(mineInterval);
+        document.getElementById('mine-face').textContent = '\uD83D\uDE0E';
+      }
+    }
+
+    // --- Easter egg: crash dialog ---
+    function triggerCrash() {
+      var overlay = document.getElementById('crash-overlay');
+      overlay.style.display = 'block';
+      // After keypress or 4s, do the "reboot" sequence
+      function dismissCrash() {
+        overlay.style.display = 'none';
+        document.removeEventListener('keydown', dismissCrash);
+        // Flicker effect
+        var flickers = 0;
+        var body = document.body;
+        var flickInterval = setInterval(function() {
+          body.style.visibility = body.style.visibility === 'hidden' ? 'visible' : 'hidden';
+          flickers++;
+          if (flickers > 7) {
+            clearInterval(flickInterval);
+            body.style.visibility = 'visible';
+            // Show the minesweeper popup
+            mineInit2();
+            document.getElementById('mine-popup').style.display = 'block';
+          }
+        }, 120);
+      }
+      document.addEventListener('keydown', dismissCrash);
+      setTimeout(dismissCrash, 5000);
+    }
+
+    // --- Second Minesweeper instance (popup) ---
+    var mineBoard2 = [], mineRevealed2 = [], mineFlagged2 = [];
+    var mineGameOver2 = false, mineStarted2 = false, mineTimer2 = 0, mineInterval2 = null;
+
+    function mineInit2() {
+      clearInterval(mineInterval2);
+      mineGameOver2 = false; mineStarted2 = false; mineTimer2 = 0;
+      mineBoard2 = []; mineRevealed2 = []; mineFlagged2 = [];
+      for (var i = 0; i < ROWS * COLS; i++) { mineBoard2.push(0); mineRevealed2.push(false); mineFlagged2.push(false); }
+      var placed = 0;
+      while (placed < MINES) {
+        var idx = Math.floor(Math.random() * ROWS * COLS);
+        if (mineBoard2[idx] !== -1) { mineBoard2[idx] = -1; placed++; }
+      }
+      for (var r = 0; r < ROWS; r++) {
+        for (var c = 0; c < COLS; c++) {
+          if (mineBoard2[r * COLS + c] === -1) continue;
+          var cnt = 0;
+          for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+            var nr = r + dr, nc = c + dc;
+            if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && mineBoard2[nr * COLS + nc] === -1) cnt++;
+          }
+          mineBoard2[r * COLS + c] = cnt;
+        }
+      }
+      document.getElementById('mine-face2').textContent = '\uD83D\uDE42';
+      document.getElementById('mine-time2').textContent = '000';
+      document.getElementById('mine-flag-count2').textContent = minePad(MINES);
+      mineRender2();
+    }
+
+    function mineRender2() {
+      var bd = document.getElementById('mine-board2');
+      bd.style.gridTemplateColumns = 'repeat(' + COLS + ', 22px)';
+      bd.innerHTML = '';
+      for (var i = 0; i < ROWS * COLS; i++) {
+        (function(idx) {
+          var cell = document.createElement('div');
+          cell.className = 'mine-cell';
+          if (mineRevealed2[idx]) {
+            cell.classList.add('revealed');
+            var v = mineBoard2[idx];
+            if (v === -1) { cell.textContent = '\uD83D\uDCA3'; }
+            else if (v > 0) { cell.textContent = v; cell.setAttribute('data-n', v); }
+          } else if (mineFlagged2[idx]) {
+            cell.textContent = '\uD83D\uDEA9';
+          }
+          cell.addEventListener('click', function() { mineReveal2(idx); });
+          cell.addEventListener('contextmenu', function(e) { e.preventDefault(); mineFlag2(idx); });
+          bd.appendChild(cell);
+        })(i);
+      }
+    }
+
+    function mineReveal2(idx) {
+      if (mineGameOver2 || mineRevealed2[idx] || mineFlagged2[idx]) return;
+      if (!mineStarted2) {
+        mineStarted2 = true;
+        mineInterval2 = setInterval(function() {
+          mineTimer2++;
+          document.getElementById('mine-time2').textContent = minePad(mineTimer2);
+          if (mineTimer2 >= 999) clearInterval(mineInterval2);
+        }, 1000);
+      }
+      mineRevealed2[idx] = true;
+      if (mineBoard2[idx] === -1) {
+        mineGameOver2 = true;
+        clearInterval(mineInterval2);
+        document.getElementById('mine-face2').textContent = '\uD83D\uDE35';
+        for (var i = 0; i < ROWS * COLS; i++) { if (mineBoard2[i] === -1) mineRevealed2[i] = true; }
+        mineRender2(); return;
+      }
+      if (mineBoard2[idx] === 0) {
+        var r = Math.floor(idx / COLS), c = idx % COLS;
+        for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
+          var nr = r + dr, nc = c + dc;
+          if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
+            var ni = nr * COLS + nc;
+            if (!mineRevealed2[ni] && !mineFlagged2[ni]) mineReveal2(ni);
+          }
+        }
+      }
+      var unrevealed = mineRevealed2.filter(function(v, i) { return !v && mineBoard2[i] !== -1; }).length;
+      if (unrevealed === 0) {
+        mineGameOver2 = true;
+        clearInterval(mineInterval2);
+        document.getElementById('mine-face2').textContent = '\uD83D\uDE0E';
+      }
+      mineRender2();
+    }
+
+    function mineFlag2(idx) {
+      if (mineGameOver2 || mineRevealed2[idx]) return;
+      mineFlagged2[idx] = !mineFlagged2[idx];
+      var flagged = mineFlagged2.filter(Boolean).length;
+      document.getElementById('mine-flag-count2').textContent = minePad(MINES - flagged);
+      mineRender2();
+    }
+
+    var count = 4721;
+    setInterval(function() {
+      count++;
+      var el = document.getElementById('counter');
+      if (el) { el.textContent = String(count).padStart(6, '0'); }
+    }, 4500);
+  </script>
+
+  <!-- Easter egg: crash dialog -->
+  <div id="crash-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:#000080; z-index:1000; font-family:'Courier Prime',monospace;">
+    <div style="background:#000080; color:#fff; width:100%; height:100%; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px; box-sizing:border-box;">
+      <div style="font-family:'VT323',monospace; font-size:28px; background:#aaa; color:#000; padding:2px 16px; margin-bottom:24px; width:100%; max-width:580px; text-align:left;">
+        Fatal Exception
+      </div>
+      <div id="crash-text" style="max-width:580px; width:100%; font-size:14px; line-height:1.8; color:#fff;">
+        <p>A fatal exception 0E has occurred at 0028:C0034B2F in VXD VMM(01) + 00010B2F.</p>
+        <p>The current application will be terminated.</p>
+        <br>
+        <p>*&nbsp; Press any key to terminate the current application.</p>
+        <p>*&nbsp; Press CTRL+ALT+DEL to restart your computer. You will<br>&nbsp;&nbsp; lose any unsaved information in all applications.</p>
+        <br>
+        <p id="crash-blink" style="animation: blink 1s step-end infinite;">Press any key to continue _</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Easter egg: Minesweeper popup -->
+  <div id="mine-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2000; background:var(--bg); border-top:2px solid #fff; border-left:2px solid #fff; border-right:2px solid #404040; border-bottom:2px solid #404040; min-width:240px;">
+    <div style="background:#000080; color:#fff; font-family:'VT323',monospace; font-size:20px; padding:4px 8px; display:flex; justify-content:space-between; align-items:center; user-select:none;">
+      <span>&#128163; Minesweeper.exe — System Recovery</span>
+      <div class="win-btn" onclick="document.getElementById('mine-popup').style.display='none'">&#x2715;</div>
+    </div>
+    <div style="padding:10px 12px 6px;">
+      <p style="font-family:'VT323',monospace; font-size:16px; color:#555; margin-bottom:8px;">System restored. Launching safe mode application...</p>
+      <div class="mine-window" style="margin-top:0;">
+        <div class="mine-toolbar">
+          <div class="mine-counter" id="mine-flag-count2">010</div>
+          <div class="mine-face-btn" id="mine-face2" onclick="mineInit2()">&#128578;</div>
+          <div class="mine-counter" id="mine-time2">000</div>
+        </div>
+        <div class="mine-board">
+          <div class="mine-board-inner" id="mine-board2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!--
+    ============================================================
+    ZORK EASTER EGG
+    ============================================================
+    Triggered by typing "zork" anywhere on the page.
+
+    TO MAKE THIS WORK, you need to add two things to your
+    Netlify site alongside this index.html file:
+
+    STEP 1 — Download Parchment (the Z-machine interpreter):
+      - Go to: https://github.com/curiousdannii/parchment/releases
+      - Download the latest release zip
+      - Unzip it — you'll get a folder called something like "parchment-<version>"
+      - Rename that folder to: parchment
+      - Upload the entire "parchment" folder to your Netlify site
+        so it sits next to index.html
+
+    STEP 2 — Download the Zork 1 story file:
+      - Go to: https://ifarchive.org/if-archive/games/zcode/zork1.z5
+      - Download the file "zork1.z5"
+      - Upload it to your Netlify site next to index.html
+
+    Your final Netlify file structure should look like this:
+      index.html
+      zork1.z5
+      parchment/
+        index.html
+        (other parchment files...)
+
+    That's it! The easter egg will load Parchment in an iframe
+    pointed at zork1.z5 automatically.
+    ============================================================
+  -->
+
+  <!-- Easter egg: Zork terminal window -->
+  <div id="zork-overlay" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.85); z-index:3000; align-items:center; justify-content:center;">
+    <div style="width:90%; max-width:780px; height:85vh; display:flex; flex-direction:column; background:var(--bg); border-top:2px solid #fff; border-left:2px solid #fff; border-right:2px solid #404040; border-bottom:2px solid #404040;">
+
+      <!-- Title bar -->
+      <div style="background:#000080; color:#fff; font-family:'VT323',monospace; font-size:20px; padding:4px 8px; display:flex; justify-content:space-between; align-items:center; user-select:none; flex-shrink:0;">
+        <span>&#x1F5A5; Zork I: The Great Underground Empire</span>
+        <div class="win-btn" onclick="closeZork()">&#x2715;</div>
+      </div>
+
+      <!-- Toolbar hint -->
+      <div style="background:var(--bg); border-bottom:1px solid #808080; padding:3px 8px; font-family:'VT323',monospace; font-size:15px; color:#444; flex-shrink:0;">
+        Type commands to play &nbsp;&middot;&nbsp; ESC to close &nbsp;&middot;&nbsp; Try: GO NORTH, LOOK, TAKE, INVENTORY
+      </div>
+
+      <!-- Parchment iframe -->
+      <iframe
+        id="zork-frame"
+        src=""
+        style="flex:1; border:none; width:100%; background:#000;"
+        title="Zork I"
+      ></iframe>
+
+    </div>
+  </div>
+
+  <script>
+    // --- Zork easter egg: type "zork" anywhere on the page ---
+    var zorkBuffer = '';
+    var zorkLoaded = false;
+
+    document.addEventListener('keydown', function(e) {
+      // Don't fire if user is typing in a form field
+      var tag = document.activeElement.tagName.toLowerCase();
+      if (tag === 'input' || tag === 'textarea') return;
+
+      // ESC closes the Zork window
+      if (e.key === 'Escape') { closeZork(); return; }
+
+      // Build up the typed buffer, keep last 4 chars
+      zorkBuffer += e.key.toLowerCase();
+      if (zorkBuffer.length > 4) { zorkBuffer = zorkBuffer.slice(-4); }
+
+      if (zorkBuffer === 'zork') {
+        zorkBuffer = '';
+        openZork();
+      }
+    });
+
+    function openZork() {
+      var overlay = document.getElementById('zork-overlay');
+      overlay.style.display = 'flex';
+
+      // Only set the iframe src once to avoid reloading the game
+      if (!zorkLoaded) {
+        zorkLoaded = true;
+        /*
+          This points Parchment at your zork1.z5 story file.
+          Make sure both "parchment/" folder and "zork1.z5"
+          are uploaded to your Netlify site as described above.
+        */
+        document.getElementById('zork-frame').src = 'parchment/index.html?story=../zork1.z5';
+      }
+    }
+
+    function closeZork() {
+      document.getElementById('zork-overlay').style.display = 'none';
+    }
+  </script>
+
+</body>
+</html>
