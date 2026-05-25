@@ -4,6 +4,13 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Will Tomer -- Personal Homepage</title>
+  <meta name="description" content="Will Tomer — historian, essayist, and journalist. Master's candidate at Idaho State University. Previously at the Pittsburgh Post-Gazette and Toledo Blade.">
+  <meta name="author" content="Will Tomer">
+  <meta property="og:title" content="Will Tomer — Personal Homepage">
+  <meta property="og:description" content="Historian, essayist, and journalist. Master's candidate at Idaho State University. Previously at the Pittsburgh Post-Gazette and Toledo Blade.">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000080'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' font-weight='bold' text-anchor='middle' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -87,7 +94,10 @@
       font-size: 9px; line-height: 14px; text-align: center;
       color: #000; cursor: default;
       font-family: 'Courier Prime', monospace;
+      padding: 0; box-sizing: border-box;
     }
+    button.win-btn { cursor: pointer; }
+    button.win-btn:focus-visible { outline: 1px dotted #fff; outline-offset: 1px; }
 
     .window-content { padding: 16px 18px; }
 
@@ -151,20 +161,7 @@
 
     .header-text h1 { margin-bottom: 2px; }
     .header-text .subtitle { font-family: 'VT323', monospace; font-size: 18px; color: #555; }
-
-    .marquee-bar {
-      background: var(--highlight); color: #fff;
-      font-family: 'VT323', monospace; font-size: 17px;
-      padding: 3px 0; overflow: hidden; white-space: nowrap;
-      margin-bottom: 16px;
-    }
-
-    .marquee-inner { display: inline-block; animation: marquee 28s linear infinite; }
-
-    @keyframes marquee {
-      from { transform: translateX(100vw); }
-      to   { transform: translateX(-100%); }
-    }
+    .header-text .header-meta { font-size: 13px; color: #444; margin-top: 10px; }
 
     .tabs { display: flex; margin-bottom: -1px; padding: 0 8px; }
 
@@ -179,6 +176,8 @@
     }
 
     .tab.active { background: #fff; color: #000; z-index: 2; position: relative; border-bottom: 2px solid #fff; }
+    .tab:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+    .tab-content:focus-visible { outline: 1px dotted #888; outline-offset: -3px; }
 
     .tab-content { display: none; }
     .tab-content.active { display: block; }
@@ -354,78 +353,102 @@
     .mine-cell[data-n="7"] { color: #000000; }
     .mine-cell[data-n="8"] { color: #7b7b7b; }
 
+    table { table-layout: auto; word-break: break-word; }
+
     @media (max-width: 500px) {
       .header-content { flex-direction: column; }
       .tabs { flex-wrap: wrap; }
+      th, td { font-size: 12px; padding: 3px 5px; }
+      th { font-size: 14px; }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.001ms !important;
+      }
+      .cursor { animation: none; opacity: 1; }
+      .construction-icon { animation: none; }
+      #crash-blink { animation: none; }
+    }
+
+    /* Retro 90s cursors (inline SVG data URIs) */
+    body {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' shape-rendering='crispEdges'%3E%3Cpolygon points='1,1 1,15 5,11 8,17 11,16 8,11 14,11' fill='white' stroke='black' stroke-width='1' stroke-linejoin='miter'/%3E%3C/svg%3E") 1 1, default;
+    }
+    a, button, .tab, .win-btn, .mine-cell, .mine-face-btn, [role="tab"], summary, label {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='23' height='26' viewBox='0 0 23 26' shape-rendering='crispEdges'%3E%3Cg fill='white'%3E%3Crect x='8' y='1' width='2' height='1'/%3E%3Crect x='8' y='2' width='2' height='1'/%3E%3Crect x='8' y='3' width='2' height='1'/%3E%3Crect x='8' y='4' width='2' height='1'/%3E%3Crect x='8' y='5' width='2' height='1'/%3E%3Crect x='8' y='6' width='2' height='1'/%3E%3Crect x='8' y='7' width='2' height='1'/%3E%3Crect x='8' y='8' width='2' height='1'/%3E%3Crect x='12' y='8' width='1' height='1'/%3E%3Crect x='8' y='9' width='2' height='1'/%3E%3Crect x='12' y='9' width='2' height='1'/%3E%3Crect x='15' y='9' width='2' height='1'/%3E%3Crect x='8' y='10' width='2' height='1'/%3E%3Crect x='12' y='10' width='2' height='1'/%3E%3Crect x='15' y='10' width='3' height='1'/%3E%3Crect x='19' y='10' width='1' height='1'/%3E%3Crect x='2' y='11' width='2' height='1'/%3E%3Crect x='8' y='11' width='2' height='1'/%3E%3Crect x='12' y='11' width='2' height='1'/%3E%3Crect x='15' y='11' width='3' height='1'/%3E%3Crect x='19' y='11' width='2' height='1'/%3E%3Crect x='2' y='12' width='2' height='1'/%3E%3Crect x='8' y='12' width='6' height='1'/%3E%3Crect x='15' y='12' width='3' height='1'/%3E%3Crect x='19' y='12' width='2' height='1'/%3E%3Crect x='3' y='13' width='2' height='1'/%3E%3Crect x='8' y='13' width='10' height='1'/%3E%3Crect x='19' y='13' width='2' height='1'/%3E%3Crect x='3' y='14' width='2' height='1'/%3E%3Crect x='8' y='14' width='13' height='1'/%3E%3Crect x='4' y='15' width='2' height='1'/%3E%3Crect x='8' y='15' width='13' height='1'/%3E%3Crect x='4' y='16' width='17' height='1'/%3E%3Crect x='5' y='17' width='16' height='1'/%3E%3Crect x='5' y='18' width='15' height='1'/%3E%3Crect x='6' y='19' width='14' height='1'/%3E%3Crect x='7' y='20' width='13' height='1'/%3E%3Crect x='8' y='21' width='12' height='1'/%3E%3Crect x='9' y='22' width='10' height='1'/%3E%3Crect x='9' y='23' width='10' height='1'/%3E%3C/g%3E%3Cg fill='black'%3E%3Crect x='8' y='0' width='3' height='1'/%3E%3Crect x='7' y='1' width='1' height='1'/%3E%3Crect x='10' y='1' width='2' height='1'/%3E%3Crect x='7' y='2' width='1' height='1'/%3E%3Crect x='10' y='2' width='2' height='1'/%3E%3Crect x='7' y='3' width='1' height='1'/%3E%3Crect x='10' y='3' width='2' height='1'/%3E%3Crect x='7' y='4' width='1' height='1'/%3E%3Crect x='10' y='4' width='2' height='1'/%3E%3Crect x='7' y='5' width='1' height='1'/%3E%3Crect x='10' y='5' width='2' height='1'/%3E%3Crect x='7' y='6' width='1' height='1'/%3E%3Crect x='10' y='6' width='2' height='1'/%3E%3Crect x='7' y='7' width='1' height='1'/%3E%3Crect x='10' y='7' width='3' height='1'/%3E%3Crect x='7' y='8' width='1' height='1'/%3E%3Crect x='10' y='8' width='2' height='1'/%3E%3Crect x='13' y='8' width='1' height='1'/%3E%3Crect x='15' y='8' width='2' height='1'/%3E%3Crect x='7' y='9' width='1' height='1'/%3E%3Crect x='10' y='9' width='2' height='1'/%3E%3Crect x='14' y='9' width='1' height='1'/%3E%3Crect x='17' y='9' width='4' height='1'/%3E%3Crect x='1' y='10' width='4' height='1'/%3E%3Crect x='7' y='10' width='1' height='1'/%3E%3Crect x='10' y='10' width='2' height='1'/%3E%3Crect x='14' y='10' width='1' height='1'/%3E%3Crect x='18' y='10' width='1' height='1'/%3E%3Crect x='20' y='10' width='2' height='1'/%3E%3Crect x='0' y='11' width='2' height='1'/%3E%3Crect x='4' y='11' width='1' height='1'/%3E%3Crect x='7' y='11' width='1' height='1'/%3E%3Crect x='10' y='11' width='2' height='1'/%3E%3Crect x='14' y='11' width='1' height='1'/%3E%3Crect x='18' y='11' width='1' height='1'/%3E%3Crect x='21' y='11' width='2' height='1'/%3E%3Crect x='0' y='12' width='2' height='1'/%3E%3Crect x='4' y='12' width='2' height='1'/%3E%3Crect x='7' y='12' width='1' height='1'/%3E%3Crect x='14' y='12' width='1' height='1'/%3E%3Crect x='18' y='12' width='1' height='1'/%3E%3Crect x='21' y='12' width='2' height='1'/%3E%3Crect x='1' y='13' width='2' height='1'/%3E%3Crect x='5' y='13' width='1' height='1'/%3E%3Crect x='7' y='13' width='1' height='1'/%3E%3Crect x='18' y='13' width='1' height='1'/%3E%3Crect x='21' y='13' width='2' height='1'/%3E%3Crect x='2' y='14' width='1' height='1'/%3E%3Crect x='5' y='14' width='3' height='1'/%3E%3Crect x='21' y='14' width='2' height='1'/%3E%3Crect x='2' y='15' width='2' height='1'/%3E%3Crect x='6' y='15' width='2' height='1'/%3E%3Crect x='21' y='15' width='2' height='1'/%3E%3Crect x='3' y='16' width='1' height='1'/%3E%3Crect x='21' y='16' width='2' height='1'/%3E%3Crect x='4' y='17' width='1' height='1'/%3E%3Crect x='21' y='17' width='2' height='1'/%3E%3Crect x='4' y='18' width='1' height='1'/%3E%3Crect x='20' y='18' width='2' height='1'/%3E%3Crect x='5' y='19' width='1' height='1'/%3E%3Crect x='20' y='19' width='1' height='1'/%3E%3Crect x='6' y='20' width='1' height='1'/%3E%3Crect x='20' y='20' width='1' height='1'/%3E%3Crect x='6' y='21' width='2' height='1'/%3E%3Crect x='20' y='21' width='1' height='1'/%3E%3Crect x='7' y='22' width='2' height='1'/%3E%3Crect x='19' y='22' width='2' height='1'/%3E%3Crect x='8' y='23' width='1' height='1'/%3E%3Crect x='19' y='23' width='2' height='1'/%3E%3Crect x='8' y='24' width='12' height='1'/%3E%3Crect x='9' y='25' width='11' height='1'/%3E%3C/g%3E%3C/svg%3E") 9 0, pointer;
+    }
+    /* Use the system text caret on text fields — it's already pretty 90s */
+    input[type="text"], input[type="email"], textarea { cursor: text; }
   </style>
 </head>
 <body>
 
 
 
-  <div class="window">
+  <main class="window">
     <div class="window-titlebar">
       <div class="title-text">
-        <span class="title-icon">W</span>
+        <span class="title-icon" aria-hidden="true">W</span>
         Will Tomer &mdash; Personal Homepage
       </div>
       <div class="window-buttons">
-        <div class="win-btn">_</div>
-        <div class="win-btn">&#9633;</div>
-        <div class="win-btn" onclick="triggerCrash()">&#x2715;</div>
+        <div class="win-btn" aria-hidden="true">_</div>
+        <div class="win-btn" aria-hidden="true">&#9633;</div>
+        <button class="win-btn" type="button" onclick="triggerCrash()" aria-label="Close window">&#x2715;</button>
       </div>
     </div>
 
     <div class="window-content">
 
-      <div class="header-content">
-        <div class="avatar-box">WT</div>
+      <header class="header-content">
+        <div class="avatar-box" aria-hidden="true">WT</div>
         <div class="header-text">
-          <h1>WILL TOMER<span class="cursor"></span></h1>
-          <div class="subtitle">Academic &middot; Writer &middot; Journalist</div>
-          <br>
-          <div style="font-size:13px; color:#444;">
-            Master's Candidate &nbsp;|&nbsp; former <em>Pittsburgh Post-Gazette</em> &nbsp;|&nbsp; former <em>Toledo Blade</em>
+          <h1>WILL TOMER<span class="cursor" aria-hidden="true"></span></h1>
+          <div class="subtitle">Historian &middot; Essayist &middot; Journalist</div>
+          <div class="header-meta">
+            Master's Candidate &nbsp;|&nbsp; former <em>Pittsburgh Post-Gazette</em> &amp; <em>Toledo Blade</em>
           </div>
         </div>
-      </div>
+      </header>
 
       <hr>
 
-      <div class="tabs">
-        <div class="tab active" data-tab="about"      onclick="showTab('about')">About</div>
-        <div class="tab"        data-tab="journalism" onclick="showTab('journalism')">Journalism</div>
-        <div class="tab"        data-tab="research"   onclick="showTab('research')">Research</div>
-        <div class="tab"        data-tab="contact"    onclick="showTab('contact')">Contact</div>
+      <div class="tabs" role="tablist" aria-label="Site sections">
+        <button type="button" role="tab" class="tab active" id="tab-btn-about"      data-tab="about"      aria-selected="true"  aria-controls="tab-about"      tabindex="0"  onclick="showTab('about')">About</button>
+        <button type="button" role="tab" class="tab"        id="tab-btn-journalism" data-tab="journalism" aria-selected="false" aria-controls="tab-journalism" tabindex="-1" onclick="showTab('journalism')">Journalism</button>
+        <button type="button" role="tab" class="tab"        id="tab-btn-research"   data-tab="research"   aria-selected="false" aria-controls="tab-research"   tabindex="-1" onclick="showTab('research')">Research</button>
+        <button type="button" role="tab" class="tab"        id="tab-btn-contact"    data-tab="contact"    aria-selected="false" aria-controls="tab-contact"    tabindex="-1" onclick="showTab('contact')">Contact</button>
       </div>
 
       <!-- Tab: About -->
-      <div class="inset tab-content active" id="tab-about">
+      <section class="inset tab-content active" id="tab-about" role="tabpanel" aria-labelledby="tab-btn-about" tabindex="0">
         <h2>// ABOUT ME</h2>
-        <p>Hello and welcome to my website. I'm <strong>Will Tomer</strong>, a graduate student at Idaho State University, currently pursuing my Master's degree in History. Before returning to academia, I spent several years working in print journalism &mdash; I wrote and edited opinion pieces on local politicals, global affairs, and more for papers in the Rust Belt.</p>
-        <p>My academic research interests include social and sensory histories of the Third Reich, as well as German post-war reconstruction. I also study media, politics, technology film, sports, and the craft of writing itself.</p>
+        <p>Hello and welcome to my website. I'm <strong>Will Tomer</strong>, a graduate student at Idaho State University, currently pursuing my Master's degree in History. Before returning to academia, I spent several years working in print journalism &mdash; I wrote and edited opinion pieces on technology and data privacy, global affairs, and more for papers in the Rust Belt.</p>
+        <p>My academic research interests include social and sensory histories of the Third Reich, as well as German post-war reconstruction. I also study media, politics, technology, film, sports, and the craft of writing itself.</p>
         <p>This page is my little corner of the internet. Feel free to poke around.</p>
         <hr>
         <h3>Quick Facts</h3>
         <table>
-          <tr><td><strong>Status</strong></td><td>Master's Student</td></tr>
+          <tr><td><strong>Status</strong></td><td>Master's Student at Idaho State University</td></tr>
           <tr><td><strong>Background</strong></td><td>Print Journalism</td></tr>
           <tr><td><strong>Former Employers</strong></td><td>Pittsburgh Post-Gazette, Toledo Blade</td></tr>
           <tr><td><strong>Location</strong></td><td>Idaho, USA</td></tr>
         </table>
         <hr>
         <div style="display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:8px;">
-          <div>Visitors: <span class="counter" id="counter">004721</span></div>
+          <div>Visitors: <span class="counter" id="counter" aria-live="polite">000000</span></div>
           <div class="construction">
             <span class="construction-icon">&#9881;</span>
             Site under construction &mdash; check back often!
           </div>
         </div>
-      </div>
+      </section>
 
       <!-- Tab: Journalism -->
-      <div class="inset tab-content" id="tab-journalism">
+      <section class="inset tab-content" id="tab-journalism" role="tabpanel" aria-labelledby="tab-btn-journalism" tabindex="0" hidden>
         <h2>// JOURNALISM</h2>
         <p>Before graduate school, I reported and wrote for two of the Ohio Valley region's most storied newspapers. A selection of published work is below.</p>
         <hr>
@@ -468,10 +491,10 @@
             </tr>
           </tbody>
         </table>
-      </div>
+      </section>
 
       <!-- Tab: Research -->
-      <div class="inset tab-content" id="tab-research">
+      <section class="inset tab-content" id="tab-research" role="tabpanel" aria-labelledby="tab-btn-research" tabindex="0" hidden>
         <h2>// RESEARCH &amp; ACADEMICS</h2>
         <p>I'm currently enrolled in a Master's program for History at Idaho State University, exploring topics relating to the lives of Germans before, during, and after the Third Reich. I am also interested in technology and privacy-related issues.</p>
         <hr>
@@ -489,10 +512,10 @@
           <span class="construction-icon">&#9881;</span>
           Publications coming soon &mdash; check back later!
         </div>
-      </div>
+      </section>
 
       <!-- Tab: Contact -->
-      <div class="inset tab-content" id="tab-contact">
+      <section class="inset tab-content" id="tab-contact" role="tabpanel" aria-labelledby="tab-btn-contact" tabindex="0" hidden>
         <h2>// CONTACT</h2>
         <p>Have a question, want to connect, or just saying hi? Use the form below or reach out directly.</p>
         <hr>
@@ -517,9 +540,9 @@
         </form>
         <hr>
         <p style="font-size:13px; color:#555;">
-          Links: <a href="https://www.linkedin.com/in/willtomer">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="#">Academia.edu</a>
+          Links: <a href="https://www.linkedin.com/in/willtomer">LinkedIn</a>
         </p>
-      </div>
+      </section>
 
     </div><!-- /window-content -->
 
@@ -527,148 +550,77 @@
       <div class="statusbar-panel">willtomer.com</div>
       <div class="statusbar-panel" id="status-msg">Document done.</div>
     </div>
-  </div><!-- /window -->
+  </main><!-- /window -->
 
-  <div class="site-footer">
-    &copy; 1999&ndash;2026 Will Tomer &nbsp;&middot;&nbsp; Made with &#9829; and Notepad.exe &nbsp;&middot;&nbsp;
+  <footer class="site-footer">
+    &copy; 2026 Will Tomer &nbsp;&middot;&nbsp; Made with Coffee and Notepad.exe &nbsp;&middot;&nbsp;
     <span style="color:#000080;">Best viewed in 800&times;600</span>
-  </div>
+  </footer>
 
   <script>
     function showTab(name) {
       var tabs = document.querySelectorAll('.tab');
       var panels = document.querySelectorAll('.tab-content');
-      for (var i = 0; i < tabs.length; i++) { tabs[i].classList.remove('active'); }
-      for (var j = 0; j < panels.length; j++) { panels[j].classList.remove('active'); }
-
-      var btn = document.querySelector('.tab[data-tab="' + name + '"]');
-      var panel = document.getElementById('tab-' + name);
-      if (btn) { btn.classList.add('active'); }
-      if (panel) { panel.classList.add('active'); }
+      for (var i = 0; i < tabs.length; i++) {
+        var isActive = tabs[i].dataset.tab === name;
+        tabs[i].classList.toggle('active', isActive);
+        tabs[i].setAttribute('aria-selected', isActive ? 'true' : 'false');
+        tabs[i].setAttribute('tabindex', isActive ? '0' : '-1');
+      }
+      for (var j = 0; j < panels.length; j++) {
+        var panelActive = panels[j].id === 'tab-' + name;
+        panels[j].classList.toggle('active', panelActive);
+        if (panelActive) { panels[j].removeAttribute('hidden'); }
+        else { panels[j].setAttribute('hidden', ''); }
+      }
 
       var labels = { about: 'About Will', journalism: 'Journalism Portfolio', research: 'Research & Academics', contact: 'Contact Page' };
       var bar = document.getElementById('status-msg');
       if (bar) { bar.textContent = labels[name] + ' - loaded.'; }
     }
 
-    // --- Minesweeper ---
+    // Keyboard navigation for tablist (ARIA pattern: arrow keys, Home, End)
+    document.querySelectorAll('.tab').forEach(function(tab) {
+      tab.addEventListener('keydown', function(e) {
+        var tabList = Array.prototype.slice.call(document.querySelectorAll('.tab'));
+        var idx = tabList.indexOf(tab);
+        var next = null;
+        if (e.key === 'ArrowRight') next = tabList[(idx + 1) % tabList.length];
+        else if (e.key === 'ArrowLeft') next = tabList[(idx - 1 + tabList.length) % tabList.length];
+        else if (e.key === 'Home') next = tabList[0];
+        else if (e.key === 'End') next = tabList[tabList.length - 1];
+        if (next) {
+          e.preventDefault();
+          showTab(next.dataset.tab);
+          next.focus();
+        }
+      });
+    });
+
+    // --- Minesweeper (shared constants) ---
     var COLS = 9, ROWS = 9, MINES = 10;
-    var mineBoard = [], mineRevealed = [], mineFlagged = [];
-    var mineGameOver = false, mineStarted = false, mineTimer = 0, mineInterval = null;
-
     function minePad(n) { return String(Math.min(999, Math.max(0, n))).padStart(3, '0'); }
-
-    function mineInit() {
-      clearInterval(mineInterval);
-      mineGameOver = false; mineStarted = false; mineTimer = 0;
-      mineBoard = []; mineRevealed = []; mineFlagged = [];
-      for (var i = 0; i < ROWS * COLS; i++) { mineBoard.push(0); mineRevealed.push(false); mineFlagged.push(false); }
-      // Place mines
-      var placed = 0;
-      while (placed < MINES) {
-        var idx = Math.floor(Math.random() * ROWS * COLS);
-        if (mineBoard[idx] !== -1) { mineBoard[idx] = -1; placed++; }
-      }
-      // Compute numbers
-      for (var r = 0; r < ROWS; r++) {
-        for (var c = 0; c < COLS; c++) {
-          if (mineBoard[r * COLS + c] === -1) continue;
-          var count2 = 0;
-          for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
-            var nr = r + dr, nc = c + dc;
-            if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS && mineBoard[nr * COLS + nc] === -1) count2++;
-          }
-          mineBoard[r * COLS + c] = count2;
-        }
-      }
-      document.getElementById('mine-face').textContent = '\u{1F642}';
-      document.getElementById('mine-time').textContent = '000';
-      document.getElementById('mine-flag-count').textContent = minePad(MINES);
-      mineRender();
-    }
-
-    function mineRender() {
-      var bd = document.getElementById('mine-board');
-      bd.style.gridTemplateColumns = 'repeat(' + COLS + ', 22px)';
-      bd.innerHTML = '';
-      for (var i = 0; i < ROWS * COLS; i++) {
-        (function(idx) {
-          var cell = document.createElement('div');
-          cell.className = 'mine-cell';
-          if (mineRevealed[idx]) {
-            cell.classList.add('revealed');
-            var v = mineBoard[idx];
-            if (v === -1) { cell.textContent = '\uD83D\uDCA3'; }
-            else if (v > 0) { cell.textContent = v; cell.setAttribute('data-n', v); }
-          } else if (mineFlagged[idx]) {
-            cell.textContent = '\uD83D\uDEA9';
-          }
-          cell.addEventListener('click', function() { mineReveal(idx); });
-          cell.addEventListener('contextmenu', function(e) { e.preventDefault(); mineFlag(idx); });
-          bd.appendChild(cell);
-        })(i);
-      }
-    }
-
-    function mineReveal(idx) {
-      if (mineGameOver || mineRevealed[idx] || mineFlagged[idx]) return;
-      if (!mineStarted) {
-        mineStarted = true;
-        mineInterval = setInterval(function() {
-          mineTimer++;
-          document.getElementById('mine-time').textContent = minePad(mineTimer);
-          if (mineTimer >= 999) clearInterval(mineInterval);
-        }, 1000);
-      }
-      mineRevealed[idx] = true;
-      if (mineBoard[idx] === -1) {
-        mineGameOver = true;
-        clearInterval(mineInterval);
-        document.getElementById('mine-face').textContent = '\uD83D\uDE35';
-        // Reveal all mines
-        for (var i = 0; i < ROWS * COLS; i++) { if (mineBoard[i] === -1) mineRevealed[i] = true; }
-        mineRender(); return;
-      }
-      if (mineBoard[idx] === 0) {
-        var r = Math.floor(idx / COLS), c = idx % COLS;
-        for (var dr = -1; dr <= 1; dr++) for (var dc = -1; dc <= 1; dc++) {
-          var nr = r + dr, nc = c + dc;
-          if (nr >= 0 && nr < ROWS && nc >= 0 && nc < COLS) {
-            var ni = nr * COLS + nc;
-            if (!mineRevealed[ni] && !mineFlagged[ni]) mineReveal(ni);
-          }
-        }
-      }
-      mineCheckWin();
-      mineRender();
-    }
-
-    function mineFlag(idx) {
-      if (mineGameOver || mineRevealed[idx]) return;
-      mineFlagged[idx] = !mineFlagged[idx];
-      var flagged = mineFlagged.filter(Boolean).length;
-      document.getElementById('mine-flag-count').textContent = minePad(MINES - flagged);
-      mineRender();
-    }
-
-    function mineCheckWin() {
-      var unrevealed = mineRevealed.filter(function(v, i) { return !v && mineBoard[i] !== -1; }).length;
-      if (unrevealed === 0) {
-        mineGameOver = true;
-        clearInterval(mineInterval);
-        document.getElementById('mine-face').textContent = '\uD83D\uDE0E';
-      }
-    }
 
     // --- Easter egg: crash dialog ---
     function triggerCrash() {
       var overlay = document.getElementById('crash-overlay');
       overlay.style.display = 'block';
-      // After keypress or 4s, do the "reboot" sequence
+      var dismissed = false;
+      var timeoutId = null;
+      // After keypress or 5s, do the "reboot" sequence — fires exactly once.
       function dismissCrash() {
-        overlay.style.display = 'none';
+        if (dismissed) return;
+        dismissed = true;
+        if (timeoutId) { clearTimeout(timeoutId); timeoutId = null; }
         document.removeEventListener('keydown', dismissCrash);
-        // Flicker effect
+        overlay.style.display = 'none';
+        // Flicker effect (skipped under reduced motion)
+        var reduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        if (reduced) {
+          mineInit2();
+          document.getElementById('mine-popup').style.display = 'block';
+          return;
+        }
         var flickers = 0;
         var body = document.body;
         var flickInterval = setInterval(function() {
@@ -684,7 +636,7 @@
         }, 120);
       }
       document.addEventListener('keydown', dismissCrash);
-      setTimeout(dismissCrash, 5000);
+      timeoutId = setTimeout(dismissCrash, 5000);
     }
 
     // --- Second Minesweeper instance (popup) ---
@@ -786,12 +738,17 @@
       mineRender2();
     }
 
-    var count = 4721;
-    setInterval(function() {
-      count++;
-      var el = document.getElementById('counter');
-      if (el) { el.textContent = String(count).padStart(6, '0'); }
-    }, 4500);
+    // Live visitor count via GoatCounter. Counter shows 000000 until the fetch lands.
+    fetch('https://tomer25.goatcounter.com/counter/TOTAL.json')
+      .then(function(r) { return r.ok ? r.json() : null; })
+      .then(function(data) {
+        if (!data || !data.count) return;
+        var n = parseInt(String(data.count).replace(/,/g, ''), 10);
+        if (isNaN(n)) return;
+        var el = document.getElementById('counter');
+        if (el) { el.textContent = String(n).padStart(6, '0'); }
+      })
+      .catch(function() { /* silent — counter stays at 000000 */ });
   </script>
 
   <!-- Easter egg: crash dialog -->
@@ -833,40 +790,6 @@
     </div>
   </div>
 
-  <!--
-    ============================================================
-    ZORK EASTER EGG
-    ============================================================
-    Triggered by typing "zork" anywhere on the page.
-
-    TO MAKE THIS WORK, you need to add two things to your
-    Netlify site alongside this index.html file:
-
-    STEP 1 — Download Parchment (the Z-machine interpreter):
-      - Go to: https://github.com/curiousdannii/parchment/releases
-      - Download the latest release zip
-      - Unzip it — you'll get a folder called something like "parchment-<version>"
-      - Rename that folder to: parchment
-      - Upload the entire "parchment" folder to your Netlify site
-        so it sits next to index.html
-
-    STEP 2 — Download the Zork 1 story file:
-      - Go to: https://ifarchive.org/if-archive/games/zcode/zork1.z5
-      - Download the file "zork1.z5"
-      - Upload it to your Netlify site next to index.html
-
-    Your final Netlify file structure should look like this:
-      index.html
-      zork1.z5
-      parchment/
-        index.html
-        (other parchment files...)
-
-    That's it! The easter egg will load Parchment in an iframe
-    pointed at zork1.z5 automatically.
-    ============================================================
-  -->
-
   <script>
     // --- Zork easter egg: type "zork" anywhere on the page ---
     var zorkBuffer = '';
@@ -887,9 +810,13 @@
     });
 
     function openZork() {
-      window.open('https://iplayif.com/?story=http://www.ifarchive.org/if-archive/games/zcode/zork1.z5', '_blank');
+      window.open('https://iplayif.com/?story=http%3A%2F%2Fwww.ifarchive.org%2Fif-archive%2Fgames%2Fzcode%2Fzdungeon.z5', '_blank');
     }
   </script>
+
+  <!-- GoatCounter analytics -->
+  <script data-goatcounter="https://tomer25.goatcounter.com/count"
+          async src="//gc.zgo.at/count.js"></script>
 
 </body>
 </html>
