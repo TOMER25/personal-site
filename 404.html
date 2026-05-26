@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>404 -- File Not Found</title>
+  <meta name="robots" content="noindex">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000080'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' font-weight='bold' text-anchor='middle' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
+
+    :root {
+      --bg: #c0c0c0;
+      --window-border-dark: #808080;
+      --window-border-darker: #404040;
+      --window-border-light: #ffffff;
+      --titlebar-active: #000080;
+      --titlebar-text: #ffffff;
+      --text: #000000;
+      --highlight: #000080;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' viewBox='0 0 4 4' xmlns='http://www.w3.org/2000/svg'%3E%3Crect x='0' y='0' width='2' height='2' fill='%23b8b8b8'/%3E%3Crect x='2' y='2' width='2' height='2' fill='%23b8b8b8'/%3E%3C/svg%3E");
+      font-family: 'Courier Prime', 'Courier New', monospace;
+      font-size: 14px;
+      color: var(--text);
+      min-height: 100vh;
+      padding: 40px 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' viewBox='0 0 20 20' shape-rendering='crispEdges'%3E%3Cpolygon points='1,1 1,15 5,11 8,17 11,16 8,11 14,11' fill='white' stroke='black' stroke-width='1' stroke-linejoin='miter'/%3E%3C/svg%3E") 1 1, default;
+    }
+
+    a, .btn, .win-btn { cursor: pointer; }
+
+    .dialog {
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      width: 100%;
+      max-width: 460px;
+    }
+
+    .dialog-titlebar {
+      background: var(--titlebar-active);
+      color: var(--titlebar-text);
+      font-family: 'VT323', monospace;
+      font-size: 20px;
+      padding: 4px 8px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      user-select: none;
+    }
+
+    .win-btn {
+      width: 16px; height: 14px;
+      background: var(--bg);
+      border-top: 1px solid var(--window-border-light);
+      border-left: 1px solid var(--window-border-light);
+      border-right: 1px solid var(--window-border-darker);
+      border-bottom: 1px solid var(--window-border-darker);
+      font-size: 9px; line-height: 14px; text-align: center;
+      color: #000;
+      font-family: 'Courier Prime', monospace;
+      padding: 0;
+    }
+
+    .dialog-body {
+      padding: 22px 20px 16px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+
+    .stop-icon {
+      flex-shrink: 0;
+      width: 40px; height: 40px;
+      background: #ff0000;
+      color: #ffffff;
+      font-family: 'VT323', monospace;
+      font-size: 32px;
+      font-weight: bold;
+      line-height: 40px;
+      text-align: center;
+      border-top: 2px solid #ff6666;
+      border-left: 2px solid #ff6666;
+      border-right: 2px solid #800000;
+      border-bottom: 2px solid #800000;
+    }
+
+    .dialog-text { flex: 1; }
+    .dialog-text h1 {
+      font-family: 'VT323', monospace;
+      font-weight: normal;
+      font-size: 28px;
+      color: var(--highlight);
+      margin-bottom: 6px;
+      letter-spacing: 1px;
+    }
+    .dialog-text p { line-height: 1.6; margin-bottom: 8px; }
+    .dialog-text code {
+      font-family: 'Courier Prime', monospace;
+      background: #fff;
+      padding: 1px 4px;
+      border: 1px solid #888;
+      display: inline-block;
+      max-width: 100%;
+      word-break: break-all;
+      overflow-wrap: anywhere;
+      vertical-align: top;
+    }
+
+    .dialog-buttons {
+      padding: 0 20px 18px;
+      display: flex;
+      gap: 8px;
+      justify-content: flex-end;
+    }
+
+    .btn {
+      font-family: 'VT323', monospace;
+      font-size: 17px;
+      background: var(--bg);
+      border-top: 2px solid var(--window-border-light);
+      border-left: 2px solid var(--window-border-light);
+      border-right: 2px solid var(--window-border-darker);
+      border-bottom: 2px solid var(--window-border-darker);
+      padding: 3px 14px;
+      cursor: pointer;
+      color: #000;
+      text-decoration: none;
+      display: inline-block;
+    }
+    .btn:active {
+      border-top: 2px solid var(--window-border-darker);
+      border-left: 2px solid var(--window-border-darker);
+      border-right: 2px solid var(--window-border-light);
+      border-bottom: 2px solid var(--window-border-light);
+    }
+    .btn:focus-visible { outline: 1px dotted #000; outline-offset: -4px; }
+
+    .site-footer {
+      margin-top: 18px;
+      text-align: center;
+      color: #555;
+      font-family: 'VT323', monospace;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <main class="dialog" role="alertdialog" aria-labelledby="err-title">
+    <div class="dialog-titlebar">
+      <span>Error</span>
+      <a class="win-btn" href="/" aria-label="Close (return home)" style="text-decoration:none;">&#x2715;</a>
+    </div>
+    <div class="dialog-body">
+      <div class="stop-icon" aria-hidden="true">&times;</div>
+      <div class="dialog-text">
+        <h1 id="err-title">// 404 &mdash; FILE NOT FOUND</h1>
+        <p>The file <code id="bad-path">/?</code> could not be located on this server.</p>
+        <p>It may have been moved, deleted, or never existed in the first place.</p>
+      </div>
+    </div>
+    <div class="dialog-buttons">
+      <a class="btn" href="/">[ &larr; Home ]</a>
+      <a class="btn" href="javascript:history.back()">[ Back ]</a>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    &copy; 2026 Will Tomer &nbsp;&middot;&nbsp; <a href="/" style="color:#000080;">willtomer.com</a>
+  </footer>
+
+  <script>
+    // Show the actual requested path in the error message
+    var pathEl = document.getElementById('bad-path');
+    if (pathEl) {
+      var p = window.location.pathname + window.location.search;
+      pathEl.textContent = p.length > 60 ? p.slice(0, 57) + '...' : p;
+    }
+  </script>
+
+</body>
+</html>

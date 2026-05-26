@@ -11,6 +11,38 @@
   <meta property="og:type" content="website">
   <meta name="twitter:card" content="summary">
   <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%23000080'/%3E%3Ctext x='8' y='12' font-family='monospace' font-size='9' font-weight='bold' text-anchor='middle' fill='white'%3EWT%3C/text%3E%3C/svg%3E">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Will Tomer",
+    "jobTitle": "Historian, Essayist, Journalist",
+    "description": "Master's candidate in History at Idaho State University; former opinion writer and columnist at the Pittsburgh Post-Gazette and Toledo Blade.",
+    "alumniOf": {
+      "@type": "CollegeOrUniversity",
+      "name": "Idaho State University"
+    },
+    "worksFor": {
+      "@type": "CollegeOrUniversity",
+      "name": "Idaho State University"
+    },
+    "knowsAbout": [
+      "History of the Third Reich",
+      "Post-war Germany",
+      "Data privacy",
+      "Surveillance capitalism",
+      "Media criticism"
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "Idaho",
+      "addressCountry": "US"
+    },
+    "sameAs": [
+      "https://www.linkedin.com/in/willtomer"
+    ]
+  }
+  </script>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=VT323&family=Courier+Prime:ital,wght@0,400;0,700;1,400&display=swap');
 
@@ -382,6 +414,68 @@
     }
     /* Use the system text caret on text fields — it's already pretty 90s */
     input[type="text"], input[type="email"], textarea { cursor: text; }
+
+    /* Draggable window titlebar */
+    .window-titlebar { cursor: move; }
+    .window { will-change: transform; }
+
+    /* Avatar pixel-art portrait fills the 80x80 box */
+    .avatar-box { padding: 2px; }
+    .avatar-box svg { width: 100%; height: 100%; display: block; }
+
+    /* "Now" line: legal-pad yellow notepad strip */
+    .now-line {
+      background: #ffffd0;
+      border: 1px solid #c0a000;
+      padding: 6px 10px;
+      margin-bottom: 14px;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    .now-line strong { font-family: 'VT323', monospace; font-size: 16px; color: var(--highlight); letter-spacing: 1px; }
+
+    /* Pull-quote / "deck" beneath each article title */
+    .deck {
+      font-style: italic;
+      font-size: 12px;
+      color: #555;
+      margin-top: 3px;
+      line-height: 1.4;
+      padding-left: 8px;
+      border-left: 2px solid #c0c0c0;
+    }
+
+    /* Print stylesheet — drop the chrome, keep the content */
+    @media print {
+      body {
+        background: #fff !important;
+        padding: 0 !important;
+        font-size: 11pt;
+        color: #000;
+        cursor: default;
+      }
+      .window {
+        border: none !important;
+        max-width: none;
+        margin: 0;
+      }
+      .window-titlebar, .window-buttons, .statusbar,
+      .tabs, .cursor, .counter, .construction,
+      #crash-overlay, #mine-popup, #video-popup,
+      .site-footer { display: none !important; }
+      .inset { border: none !important; padding: 0 !important; margin-bottom: 12pt; }
+      .tab-content { display: block !important; }
+      .tab-content[hidden] { display: block !important; }
+      a { color: #000; text-decoration: underline; }
+      a[href]:not([href^="#"])::after {
+        content: " <" attr(href) ">";
+        font-size: 9pt;
+        color: #555;
+      }
+      h1, h2, h3 { color: #000 !important; page-break-after: avoid; }
+      table, tr, td, th { page-break-inside: avoid; }
+      .avatar-box, .header-text .cursor { display: none !important; }
+    }
   </style>
 </head>
 <body>
@@ -404,7 +498,18 @@
     <div class="window-content">
 
       <header class="header-content">
-        <div class="avatar-box" aria-hidden="true">WT</div>
+        <div class="avatar-box" aria-hidden="true">
+          <!-- Pixel-art portrait: side-parted dirty blonde hair, full beard, Ray-Ban glasses, black cardigan + white shirt -->
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 22 22" shape-rendering="crispEdges">
+            <g fill="#c9a070"><rect x="7" y="1" width="8" height="1"/><rect x="5" y="2" width="2" height="1"/><rect x="8" y="2" width="9" height="1"/><rect x="4" y="3" width="3" height="1"/><rect x="8" y="3" width="10" height="1"/><rect x="3" y="4" width="4" height="1"/><rect x="8" y="4" width="11" height="1"/><rect x="3" y="5" width="3" height="1"/><rect x="16" y="5" width="3" height="1"/><rect x="3" y="6" width="1" height="1"/><rect x="18" y="6" width="1" height="1"/></g>
+            <g fill="#f4cfa3"><rect x="7" y="2" width="1" height="1"/><rect x="7" y="3" width="1" height="1"/><rect x="7" y="4" width="1" height="1"/><rect x="6" y="5" width="10" height="1"/><rect x="4" y="6" width="14" height="1"/><rect x="4" y="7" width="3" height="1"/><rect x="16" y="7" width="3" height="1"/><rect x="4" y="8" width="3" height="1"/><rect x="11" y="8" width="1" height="1"/><rect x="16" y="8" width="3" height="1"/><rect x="4" y="9" width="3" height="1"/><rect x="11" y="9" width="1" height="1"/><rect x="16" y="9" width="3" height="1"/><rect x="4" y="10" width="3" height="1"/><rect x="11" y="10" width="1" height="1"/><rect x="16" y="10" width="3" height="1"/><rect x="4" y="11" width="7" height="1"/><rect x="12" y="11" width="7" height="1"/><rect x="4" y="12" width="6" height="1"/><rect x="13" y="12" width="6" height="1"/><rect x="8" y="13" width="6" height="1"/></g>
+            <g fill="#1a1a1a"><rect x="7" y="7" width="9" height="1"/><rect x="7" y="8" width="1" height="1"/><rect x="10" y="8" width="1" height="1"/><rect x="12" y="8" width="1" height="1"/><rect x="15" y="8" width="1" height="1"/><rect x="7" y="9" width="1" height="1"/><rect x="10" y="9" width="1" height="1"/><rect x="12" y="9" width="1" height="1"/><rect x="15" y="9" width="1" height="1"/><rect x="7" y="10" width="4" height="1"/><rect x="12" y="10" width="4" height="1"/><rect x="1" y="19" width="6" height="1"/><rect x="15" y="19" width="6" height="1"/><rect x="0" y="20" width="8" height="1"/><rect x="14" y="20" width="8" height="1"/><rect x="0" y="21" width="22" height="1"/></g>
+            <g fill="#ffffff"><rect x="8" y="8" width="2" height="1"/><rect x="13" y="8" width="2" height="1"/><rect x="8" y="9" width="2" height="1"/><rect x="13" y="9" width="2" height="1"/><rect x="7" y="19" width="8" height="1"/><rect x="8" y="20" width="6" height="1"/></g>
+            <g fill="#d8a878"><rect x="11" y="11" width="1" height="1"/><rect x="10" y="12" width="3" height="1"/></g>
+            <g fill="#a78043"><rect x="3" y="13" width="5" height="1"/><rect x="14" y="13" width="5" height="1"/><rect x="3" y="14" width="6" height="1"/><rect x="13" y="14" width="6" height="1"/><rect x="3" y="15" width="16" height="1"/><rect x="3" y="16" width="16" height="1"/><rect x="4" y="17" width="14" height="1"/><rect x="6" y="18" width="10" height="1"/></g>
+            <g fill="#b85a48"><rect x="9" y="14" width="4" height="1"/></g>
+          </svg>
+        </div>
         <div class="header-text">
           <h1>WILL TOMER<span class="cursor" aria-hidden="true"></span></h1>
           <div class="subtitle">Historian &middot; Essayist &middot; Journalist</div>
@@ -426,8 +531,12 @@
       <!-- Tab: About -->
       <section class="inset tab-content active" id="tab-about" role="tabpanel" aria-labelledby="tab-btn-about" tabindex="0">
         <h2>// ABOUT ME</h2>
+        <!-- NOW line: edit this whenever your current focus changes -->
+        <div class="now-line">
+          <strong>// NOW:</strong> <em>Researching my thesis on captivity, memory, and meaning among the German POWs at Camp Rupert, Idaho.</em>]
+        </div>
         <p>Hello and welcome to my website. I'm <strong>Will Tomer</strong>, a graduate student at Idaho State University, currently pursuing my Master's degree in History. Before returning to academia, I spent several years working in print journalism &mdash; I wrote and edited opinion pieces on technology and data privacy, global affairs, and more for papers in the Rust Belt.</p>
-        <p>My academic research interests include social and sensory histories of the Third Reich, as well as German post-war reconstruction. I also study media, politics, technology, film, sports, and the craft of writing itself.</p>
+        <p>My academic research interests include social and sensory histories of the Third Reich, as well as German post-war reconstruction. I also study media, politics, technology, film, sports, and the craft of writing.</p>
         <p>This page is my little corner of the internet. Feel free to poke around.</p>
         <hr>
         <h3>Quick Facts</h3>
@@ -458,15 +567,24 @@
           <thead><tr><th>Title</th><th>Date</th><th>Section</th></tr></thead>
           <tbody>
             <tr>
-              <td><a href="https://www.post-gazette.com/opinion/columnists/2018/10/30/will-tomer-the-limits-of-civil-discourse/stories/201810300038" target="_blank">The limits of civil discourse</a></td>
+              <td>
+                <a href="https://www.post-gazette.com/opinion/columnists/2018/10/30/will-tomer-the-limits-of-civil-discourse/stories/201810300038" target="_blank">The limits of civil discourse</a>
+                <div class="deck">There must be a greater delineation between free speech — the freedom to speak one’s mind without governmental interference — and civil discourse — a conversation or good-faith debate of ideas.</div>
+              </td>
               <td>Oct 2018</td><td><span class="badge">Opinion</span></td>
             </tr>
             <tr>
-              <td><a href="https://www.post-gazette.com/opinion/columnists/2018/11/20/will-tomer-the-case-for-antitrust-action-against-facebook/stories/201811200028" target="_blank">The case for antitrust action against Facebook</a></td>
+              <td>
+                <a href="https://www.post-gazette.com/opinion/columnists/2018/11/20/will-tomer-the-case-for-antitrust-action-against-facebook/stories/201811200028" target="_blank">The case for antitrust action against Facebook</a>
+                <div class="deck">It is bad for both commerce and democracy when any company has the influence that Facebook has.</div>
+              </td>
               <td>Nov 2018</td><td><span class="badge">Opinion</span></td>
             </tr>
             <tr>
-              <td><a href="https://www.post-gazette.com/ae/books/2019/04/22/american-cosmic-ufos-religion-technology-diana-walsh-dw-pasulka-alien-extraterrestrial-life/stories/201903310008" target="_blank">'American Cosmic' details extraterrestrial fascination among the rich and powerful</a></td>
+              <td>
+                <a href="https://www.post-gazette.com/ae/books/2019/06/21/Peter-Longerich-Hitler-biography/stories/201906230010" target="_blank">Peter Longerich cuts through the Hitler myth in new biography</a>
+                <div class="deck">Central to Longerich’s book is a focus on Hitler, the politician and man, rather than Hitler, the messianic leader of a Germany eager to avenge the humiliations of World War I.</div>
+              </td>
               <td>Apr 2019</td><td><span class="badge">Books</span></td>
             </tr>
           </tbody>
@@ -478,15 +596,24 @@
           <thead><tr><th>Title</th><th>Date</th><th>Section</th></tr></thead>
           <tbody>
             <tr>
-              <td><a href="https://www.toledoblade.com/Will-Tomer/2018/07/08/History-will-not-judge-this-kindly-Pursuing-justice-for-Abu-Zubaydah-the-first-victim-of-the-CIA-s-torture-program/stories/20180708049" target="_blank">Pursuing justice for Abu Zubaydah, the first victim of the CIA's torture program</a></td>
+              <td>
+                <a href="https://web.archive.org/web/20260310034125/https://www.toledoblade.com/Will-Tomer/2018/07/08/History-will-not-judge-this-kindly-Pursuing-justice-for-Abu-Zubaydah-the-first-victim-of-the-CIA-s-torture-program.html" target="_blank">Pursuing justice for Abu Zubaydah, the first victim of the CIA's torture program</a>
+                <div class="deck">Depriving Zubaydah of the rights that form the basis of our government and which we seek to defend undermines the legal and moral credibility of the U.S.</div>
+              </td>
               <td>Jul 2018</td><td><span class="badge">Features</span></td>
             </tr>
             <tr>
-              <td><a href="https://www.toledoblade.com/Will-Tomer/2018/04/01/The-importance-of-baseball/stories/20180401057" target="_blank">The importance of baseball</a></td>
+              <td>
+                <a href="https://web.archive.org/web/20250721204841/http://www.toledoblade.com/Will-Tomer/2018/04/01/The-importance-of-baseball.html" target="_blank">The importance of baseball</a>
+                <div class="deck">Baseball binds us together in a way that very few things can. It allows for hopes and for dreams, and it can even allow for people to live on forever.</div>
+              </td>
               <td>Apr 2018</td><td><span class="badge">Opinion</span></td>
             </tr>
             <tr>
-              <td><a href="https://www.toledoblade.com/opinion/letters-to-the-editor/2025/03/14/to-editor-arrest-khalil-presents-existential-threat-nation/stories/20250313041" target="_blank">Arrest of Mahmoud Khalil presents an existential threat to nation</a></td>
+              <td>
+                <a href="https://www.toledoblade.com/opinion/letters-to-the-editor/2025/03/14/to-editor-arrest-khalil-presents-existential-threat-nation/stories/20250313041" target="_blank">Arrest of Mahmoud Khalil presents an existential threat to nation</a>
+                <div class="deck">If you believe in free speech, now is the time to defend it. Silence emboldens those who seek to crush dissent.</div>
+              </td>
               <td>Mar 2025</td><td><span class="badge">Opinion</span></td>
             </tr>
           </tbody>
@@ -549,6 +676,7 @@
     <div class="statusbar">
       <div class="statusbar-panel">willtomer.com</div>
       <div class="statusbar-panel" id="status-msg">Document done.</div>
+      <div class="statusbar-panel" id="clock-panel" style="margin-left:auto;">--:--</div>
     </div>
   </main><!-- /window -->
 
@@ -577,7 +705,26 @@
       var labels = { about: 'About Will', journalism: 'Journalism Portfolio', research: 'Research & Academics', contact: 'Contact Page' };
       var bar = document.getElementById('status-msg');
       if (bar) { bar.textContent = labels[name] + ' - loaded.'; }
+
+      // Sync URL hash so tabs are deep-linkable; replaceState avoids hashchange loop.
+      var hash = '#' + name;
+      if (window.location.hash !== hash && history.replaceState) {
+        history.replaceState(null, '', hash);
+      }
     }
+
+    // Honor URL hash on load and on back/forward navigation
+    var VALID_TABS = ['about', 'journalism', 'research', 'contact'];
+    function tabFromHash() {
+      var h = window.location.hash.replace(/^#/, '');
+      return VALID_TABS.indexOf(h) >= 0 ? h : null;
+    }
+    var initialTab = tabFromHash();
+    if (initialTab) { showTab(initialTab); }
+    window.addEventListener('hashchange', function() {
+      var t = tabFromHash();
+      if (t) { showTab(t); }
+    });
 
     // Keyboard navigation for tablist (ARIA pattern: arrow keys, Home, End)
     document.querySelectorAll('.tab').forEach(function(tab) {
@@ -769,6 +916,23 @@
     </div>
   </div>
 
+  <!-- Easter egg: MediaPlayer video popup (triggered by Konami code) -->
+  <div id="video-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2000; background:var(--bg); border-top:2px solid #fff; border-left:2px solid #fff; border-right:2px solid #404040; border-bottom:2px solid #404040; max-width:96vw;">
+    <div class="video-titlebar" style="background:#000080; color:#fff; font-family:'VT323',monospace; font-size:20px; padding:4px 8px; display:flex; justify-content:space-between; align-items:center; user-select:none; cursor:move;">
+      <span>&#127916; MediaPlayer.exe</span>
+      <button class="win-btn" type="button" onclick="closeVideoPopup()" aria-label="Close video">&#x2715;</button>
+    </div>
+    <div style="padding:4px; background:#000;">
+      <iframe id="video-frame"
+              width="480" height="270"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share; fullscreen"
+              referrerpolicy="strict-origin-when-cross-origin"
+              allowfullscreen
+              style="display:block; max-width:90vw; max-height:50.625vw; border:0;"></iframe>
+    </div>
+  </div>
+
   <!-- Easter egg: Minesweeper popup -->
   <div id="mine-popup" style="display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); z-index:2000; background:var(--bg); border-top:2px solid #fff; border-left:2px solid #fff; border-right:2px solid #404040; border-bottom:2px solid #404040; min-width:240px;">
     <div style="background:#000080; color:#fff; font-family:'VT323',monospace; font-size:20px; padding:4px 8px; display:flex; justify-content:space-between; align-items:center; user-select:none;">
@@ -812,6 +976,109 @@
     function openZork() {
       window.open('https://iplayif.com/?story=http%3A%2F%2Fwww.ifarchive.org%2Fif-archive%2Fgames%2Fzcode%2Fzdungeon.z5', '_blank');
     }
+
+    // --- Draggable main window (Win95-style) ---
+    (function() {
+      var win = document.querySelector('main.window');
+      if (!win) return;
+      var bar = win.querySelector('.window-titlebar');
+      var dx = 0, dy = 0, startX = 0, startY = 0, dragging = false, pointerId = null;
+
+      function onDown(e) {
+        // Don't start a drag from the close/min/max buttons
+        if (e.target.closest('.window-buttons')) return;
+        dragging = true;
+        startX = e.clientX - dx;
+        startY = e.clientY - dy;
+        pointerId = e.pointerId;
+        try { bar.setPointerCapture(pointerId); } catch (_) {}
+        e.preventDefault();
+      }
+      function onMove(e) {
+        if (!dragging) return;
+        dx = e.clientX - startX;
+        dy = e.clientY - startY;
+        win.style.transform = 'translate(' + dx + 'px, ' + dy + 'px)';
+      }
+      function onUp() {
+        if (!dragging) return;
+        dragging = false;
+        try { bar.releasePointerCapture(pointerId); } catch (_) {}
+      }
+      // Double-click titlebar to snap back to origin
+      bar.addEventListener('dblclick', function(e) {
+        if (e.target.closest('.window-buttons')) return;
+        dx = 0; dy = 0;
+        win.style.transform = '';
+      });
+      bar.addEventListener('pointerdown', onDown);
+      bar.addEventListener('pointermove', onMove);
+      bar.addEventListener('pointerup', onUp);
+      bar.addEventListener('pointercancel', onUp);
+    })();
+
+    // --- Live status-bar clock (updates every 30s) ---
+    (function() {
+      var el = document.getElementById('clock-panel');
+      if (!el) return;
+      var DAYS = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      var MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+      function pad(n) { return n < 10 ? '0' + n : '' + n; }
+      function tick() {
+        var d = new Date();
+        el.textContent = DAYS[d.getDay()] + ' ' + MONTHS[d.getMonth()] + ' ' + d.getDate() + '  ' + pad(d.getHours()) + ':' + pad(d.getMinutes());
+      }
+      tick();
+      setInterval(tick, 30000);
+    })();
+
+    // --- Video popup helpers (used by Konami easter egg) ---
+    // youtube-nocookie.com avoids most ad-blocker / third-party-cookie blockages (Error 153)
+    var VIDEO_EMBED_URL = 'https://www.youtube-nocookie.com/embed/U4M9zdCaRcU?autoplay=1&rel=0&playsinline=1';
+    function openVideoPopup() {
+      var frame = document.getElementById('video-frame');
+      var popup = document.getElementById('video-popup');
+      if (!frame || !popup) return;
+      frame.src = VIDEO_EMBED_URL;
+      popup.style.display = 'block';
+    }
+    function closeVideoPopup() {
+      var frame = document.getElementById('video-frame');
+      var popup = document.getElementById('video-popup');
+      if (!popup) return;
+      popup.style.display = 'none';
+      // Clear src so audio/video actually stops
+      if (frame) frame.src = '';
+    }
+
+    // --- Konami code: ↑ ↑ ↓ ↓ ← → ← → B A opens the MediaPlayer popup ---
+    (function() {
+      var SEQ = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a'];
+      var pos = 0;
+      document.addEventListener('keydown', function(e) {
+        // Esc closes the video popup if it's open
+        if (e.key === 'Escape') {
+          var popup = document.getElementById('video-popup');
+          if (popup && popup.style.display === 'block') {
+            closeVideoPopup();
+            return;
+          }
+        }
+        // Ignore Konami progress when typing in form fields
+        var tag = document.activeElement && document.activeElement.tagName.toLowerCase();
+        if (tag === 'input' || tag === 'textarea') return;
+        var key = e.key.length === 1 ? e.key.toLowerCase() : e.key;
+        if (key === SEQ[pos]) {
+          pos++;
+          if (pos === SEQ.length) {
+            pos = 0;
+            openVideoPopup();
+          }
+        } else {
+          pos = (key === SEQ[0]) ? 1 : 0;
+        }
+      });
+    })();
   </script>
 
   <!-- GoatCounter analytics -->
