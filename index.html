@@ -387,6 +387,16 @@
 
     table { table-layout: auto; word-break: break-word; }
 
+    /* Journalism tables: keep Date and Section columns on one line, and give
+       the Title column the slack so URLs/long titles wrap there instead. */
+    #tab-journalism th:nth-child(2),
+    #tab-journalism td:nth-child(2),
+    #tab-journalism th:nth-child(3),
+    #tab-journalism td:nth-child(3) {
+      white-space: nowrap;
+      width: 1%;
+    }
+
     @media (max-width: 500px) {
       .header-content { flex-direction: column; }
       .tabs { flex-wrap: wrap; }
